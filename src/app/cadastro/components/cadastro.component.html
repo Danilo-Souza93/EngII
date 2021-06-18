@@ -1,0 +1,79 @@
+<div class="container tabela">
+  <h2 class="titulo"><i class="bi bi-chevron-double-right icone">
+    </i>Cadastro
+    <button class="btn btn-lg btn-outline-primary btn-modal" (click)="abrirModal(content)">Add</button>
+  </h2>
+
+  <hr />
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th scope="col titulo">Id</th>
+        <th scope="col titulo">Nome</th>
+        <th scope="col titulo">Possui Filhos?</th>
+        <th scope="col titulo">Possui Trabalho?</th>
+        <th scope="col titulo">Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr #linha *ngFor="let i of cadastros" [attr.data-cadastroId]="i.id">
+        <th scope="row">{{i.id}}</th>
+        <td>{{i.nome}}</td>
+        <td>{{i.filhos}}</td>
+        <td>{{i.emprego}}</td>
+        <td class="acoes">
+          <button type="button" class="btn btn-secondary" value="Selecionar" (click)="selecionar(linha, content)">Atualizar
+          </button>
+          <button type="button" class="btn btn-danger" (click)="excluir(i.id)">Excluir
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Cadastros</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form method="POST" #frm="ngForm" (ngSubmit)="salvar(frm)">
+      <div class="form-group">
+        <div class="mb-3">
+          <label for="nome" class="form-label">Nome</label>
+          <input type="text" class="form-control" id="nome" placeholder="Nome?" name="nome"
+            [(ngModel)]="cadastro.nome" value="{{cadastro.nome}}" required />
+        </div>
+        <div class="form-group">
+          <div class="mb-3">
+            <label for="nome" class="form-label">Possui Filhos?</label>
+            <input type="text" class="form-control" id="nome" placeholder="Filhos?" name="filho"
+              [(ngModel)]="cadastro.filhos" value="{{cadastro.filhos}}" required />
+          </div>
+        </div>
+          <div class="form-group">
+            <div class="mb-3">
+              <label for="nome" class="form-label">Possui Trabalho?</label>
+              <input type="text" class="form-control" id="nome" placeholder="Emprego?" name="emprego"
+                [(ngModel)]="cadastro.emprego" value="{{cadastro.emprego}}" required />
+            </div>
+          </div>
+      </div>
+      <button type="submit" class="btn btn-primary btn-salvar" [disabled]="frm.invalid">Salvar</button>
+    </form>
+  </div>
+</ng-template>
+<!-- <div>
+  <tbody>
+    <tr #linha *ngFor="let i of cadastros" [attr.data-cadastroId]="i.id">
+      <th scope="row">{{i.id}}</th>
+      <td >{{i.nome}}</td>
+      <td >APROVADO</td>
+    </tr>
+  </tbody>
+</div> -->
+
+
+
