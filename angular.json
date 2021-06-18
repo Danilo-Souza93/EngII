@@ -1,5 +1,8 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "cli": {
+    "analytics": "b34862c1-2054-4af5-9855-fe26eb3bf99a"
+  },
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
@@ -67,12 +70,15 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
+            "url": {
+              "browserTarget": "ProjetoEng:build:urlDaApi"
+            },
             "production": {
               "browserTarget": "ProjetoEng:build:production"
-            },
-            "development": {
-              "browserTarget": "ProjetoEng:build:development"
             }
+          },
+          "options": {
+            "browserTarget": "ProjetoEng:build"
           },
           "defaultConfiguration": "development"
         },
